@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:print_log/core/logger.dart';
 import 'package:print_log/screens/third_screen.dart';
 
 class FourthScreen extends StatelessWidget {
@@ -18,20 +19,32 @@ class FourthScreen extends StatelessWidget {
             const SizedBox(height: 20),
             const Text('Navigasi ke Layar Ketiga:'),
             ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, '/third'),
+              onPressed: () {
+                AppLogger.i('Navigasi ke Third Screen menggunakan pushNamed');
+                print('Navigasi ke Third Screen menggunakan pushNamed');
+                Navigator.pushNamed(context, '/third');
+              },
               child: const Text('Gunakan pushNamed'),
             ),
             ElevatedButton(
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const ThirdScreen()),
-              ),
+              onPressed: () {
+                AppLogger.d('Navigasi ke Third Screen menggunakan push');
+                print('Navigasi ke Third Screen menggunakan push');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ThirdScreen()),
+                );
+              },
               child: const Text('Gunakan push biasa'),
             ),
             const SizedBox(height: 20),
             const Text('Navigasi ke Layar sebelumnya:'),
             ElevatedButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () {
+                AppLogger.w('Navigasi kembali ke layar sebelumnya');
+                print('Navigasi kembali ke layar sebelumnya');
+                Navigator.pop(context);
+              },
               child: const Text('Kembali ke Layar Sebelumnya'),
             ),
           ],

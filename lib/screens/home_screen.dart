@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:print_log/core/logger.dart';
 import 'package:print_log/screens/second_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -18,14 +19,22 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 20),
             const Text('Navigasi ke Layar Kedua:'),
             ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, '/second'),
+              onPressed: () {
+                AppLogger.i('Navigasi ke Second Screen menggunakan pushNamed');
+                print('Navigasi ke Second Screen menggunakan pushNamed');
+                Navigator.pushNamed(context, '/second');
+              },
               child: const Text('Gunakan pushNamed'),
             ),
             ElevatedButton(
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SecondScreen()),
-              ),
+              onPressed: () {
+                AppLogger.d('Navigasi ke Second Screen menggunakan push');
+                print('Navigasi ke Second Screen menggunakan push');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SecondScreen()),
+                );
+              },
               child: const Text('Gunakan push biasa'),
             ),
           ],
