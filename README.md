@@ -1,16 +1,48 @@
-# print_log
+# Perbandingan Print dan Logger di Flutter
 
-A new Flutter project.
+## 1. Print
+- **Metode**: `print()`
+- **Penggunaan**: Fungsi bawaan Dart untuk mencetak pesan ke konsol.
+- **Keunggulan**: Mudah digunakan, tidak perlu konfigurasi.
+- **Keterbatasan**: Tidak ada level logging, format kustom, atau penyimpanan log; sulit dikelola di proyek besar.
+- **Kegunaan**: Cocok untuk debugging cepat pada proyek kecil.
 
-## Getting Started
+**Contoh Kode**:
+```dart
+print('Pesan debug sederhana');
+```
 
-This project is a starting point for a Flutter application.
+## 2. Logger
+- **Metode**: Paket `logger` atau `logging`
+- **Penggunaan**: Solusi logging canggih dengan level logging dan format yang dapat disesuaikan.
+- **Keunggulan**: Mendukung level logging (info, debug, error), format kustom, output fleksibel (konsol, file), struktur pesan jelas, dan performa lebih baik di produksi.
+- **Keterbatasan**: Memerlukan dependensi eksternal dan konfigurasi awal.
+- **Kegunaan**: Ideal untuk aplikasi sedang hingga besar yang butuh logging terstruktur.
 
-A few resources to get you started if this is your first Flutter project:
+**Contoh Kode**:
+```dart
+import 'package:logging/logging.dart';
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+final Logger _logger = Logger('AppLogger');
+_logger.info('Aplikasi dimulai');
+_logger.severe('Error terjadi', Exception('Kesalahan'));
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Mengapa Logger Direkomendasikan?
+- **Manajemen Pesan**: Level logging memudahkan filtering pesan berdasarkan kepentingan.
+- **Analisis**: Log dapat disimpan atau dikirim ke layanan eksternal untuk debugging.
+- **Efisiensi Produksi**: Dapat mengurangi log tidak penting, tidak membebani sistem.
+- **Skalabilitas**: Cocok untuk aplikasi besar dengan kebutuhan logging kompleks.
+
+## Tabel Perbandingan
+| Fitur                | Print               | Logger              |
+|----------------------|---------------------|---------------------|
+| **Kemudahan**        | Sangat Mudah        | Sedang              |
+| **Level Logging**    | Tidak Didukung      | Didukung            |
+| **Format Kustom**    | Tidak Didukung      | Didukung            |
+| **Output Fleksibel** | Hanya Konsol        | Konsol, File, dll   |
+| **Performa Produksi**| Buruk              | Baik (Dapat Filter) |
+
+## Kesimpulan
+- **Print**: Hanya untuk debugging sederhana di proyek kecil, hindari di produksi.
+- **Logger**: Pilihan terbaik untuk aplikasi yang membutuhkan logging terstruktur dan efisien, dengan fitur canggih untuk debugging dan monitoring.
