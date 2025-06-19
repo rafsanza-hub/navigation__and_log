@@ -1,33 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class NestedScreen extends StatelessWidget {
+  final String id;
+
+  const NestedScreen({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Layar Utama'),
+        title: Text('Nested Screen $id'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Ini adalah Layar Utama'),
+            Text('This is a nested screen with ID: $id'),
             const SizedBox(height: 20),
-            const Text('Navigasi ke Layar Kedua:'),
             ElevatedButton(
               onPressed: () {
-                context.go('/second');
+                context.go('/second/nested/another');
               },
-              child: const Text('Gunakan pushNamed'),
+              child: const Text('Go to Another Nested Screen'),
             ),
             ElevatedButton(
               onPressed: () {
-                context.push('/second');
+                context.pop();
               },
-              child: const Text('Gunakan push biasa'),
+              child: const Text('Go Back'),
             ),
           ],
         ),

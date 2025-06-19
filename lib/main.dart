@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:print_log/screens/home_screen.dart';
-import 'package:print_log/screens/second_screen.dart';
-import 'package:print_log/screens/third_screen.dart';
-import 'package:print_log/screens/fourth_screen.dart';
+import 'package:print_log/router.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,14 +10,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Flutter Demo',
-      routes: {
-        '/': (context) => const HomeScreen(),
-        '/second': (context) => const SecondScreen(),
-        '/third': (context) => const ThirdScreen(),
-        '/fourth': (context) => const FourthScreen(),
-      },
+      routerConfig: router,
     );
   }
 }

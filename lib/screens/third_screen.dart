@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:print_log/screens/second_screen.dart';
-import 'package:print_log/screens/fourth_screen.dart';
+import 'package:go_router/go_router.dart';
 
 class ThirdScreen extends StatelessWidget {
   const ThirdScreen({super.key});
@@ -19,27 +18,29 @@ class ThirdScreen extends StatelessWidget {
             const SizedBox(height: 20),
             const Text('Navigasi ke Layar Kedua:'),
             ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, '/second'),
+              onPressed: () {
+                context.go('/second');
+              },
               child: const Text('Gunakan pushNamed'),
             ),
             ElevatedButton(
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SecondScreen()),
-              ),
+              onPressed: () {
+                context.push('/second');
+              },
               child: const Text('Gunakan push biasa'),
             ),
             const SizedBox(height: 20),
             const Text('Navigasi ke Layar Keempat:'),
             ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, '/fourth'),
+              onPressed: () {
+                context.go('/fourth');
+              },
               child: const Text('Gunakan pushNamed'),
             ),
             ElevatedButton(
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const FourthScreen()),
-              ),
+              onPressed: () {
+                context.push('/fourth');
+              },
               child: const Text('Gunakan push biasa'),
             ),
           ],
